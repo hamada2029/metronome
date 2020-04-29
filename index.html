@@ -20,14 +20,16 @@
       <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
           <div class="mdl-layout__header-row">
-            <span class="mdl-layout-title">The Metronome</span>
+            <span class="mdl-layout-title">
+              <a title="jump to presets URL" id="link1">The Metronome</a>
+            </span>
           </div>
           <div class="mdl-layout__header-row">
             <button class="mdl-button mdl-demo mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add"
             onclick="play();">
-            <i id="play-icon" class="material-icons" role="presentation">play_arrow</i>
-            <span class="visuallyhidden">Add</span>
-          </button>
+              <i id="play-icon" class="material-icons" role="presentation">play_arrow</i>
+              <span class="visuallyhidden">Add</span>
+            </button>
           </div>
         </header>
 
@@ -83,7 +85,7 @@
     </div>
     <script type="text/javascript">
       function getUrlQueries(){
-        const queryStr = window.location.search.slice(1);
+        const queryStr = location.search.slice(1);
         const queries = {};
         if(! queryStr){return queries;}
         queryStr.split('&').forEach(
@@ -101,6 +103,20 @@
         inp.value = qd[k];
         inp.oninput({target: inp});
       }
+
+      document.getElementById('link1').onclick = function(){
+          const qs0 = location.search;
+          const url = location.href.replace(qs0, '');
+          const inps = document.querySelectorAll('input[id]');
+          let qs1 = [];
+          inps.forEach(
+            function(inp){
+              qs1.push(`${inp.id}=${inp.value}`);
+            }
+          );
+          qs1 = qs1.join('&');
+          location.href = url + '?' + qs1;
+      };
     </script>
 
    </body>
