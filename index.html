@@ -11,10 +11,18 @@
     <link rel="stylesheet" href="assets/css/main.css">
 
     <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-    <script src="assets/js/monkeypatch.js"></script>
-    <script src="assets/js/metronome.js"></script>
+<!--     <script src="assets/js/monkeypatch.js"></script>
+    <script src="assets/js/metronome.js"></script> -->
   </head>
   <body>
+    <script type="text/javascript">
+      const srcs = ['assets/js/monkeypatch.js', 'assets/js/metronome.js'];
+      for(let i in srcs){
+        let sc = document.createElement('script');
+        sc.src = srcs[i] + '?' + new Date().getTime();
+        document.head.appendChild(sc);
+      }
+    </script>
     <div class="metronome">
       <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
